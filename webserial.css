@@ -1,0 +1,391 @@
+@font-face { 
+            font-family: b612; 
+            src: url('./B612Mono-Regular.ttf'); 
+} 
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('space.jpg');
+    background-size: cover;
+    font-family: b612;
+    overflow: hidden;
+    font-size: 120% !important;
+}
+
+#menu {
+    display: flex;
+    text-align: center;
+    width: 75%;
+    margin: 0 auto;
+    flex-direction: column;
+    margin-bottom: 10%;
+    font-size: 200%;
+}
+
+button {
+    margin: 1%;
+    min-width: 10px;
+    font-size: 150%;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    transition: box-shadow 0.05s ease;
+    filter: drop-shadow(4px 4px black); 
+}
+
+button:before {
+    content: '//';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    vertical-align: middle;
+}
+
+button::after {
+    content: '\\\\'; /* Escape Characters for 2x backslashes */
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    vertical-align: middle;
+}
+
+#divider {
+    width: 100%;
+}
+
+#footer a {
+    color:white;
+}
+
+#menuCont {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    /* position: absolute; */
+    top: 1%;
+}
+
+#creditText {
+    color: white;
+}
+
+#loopbackButton {
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    width: 70px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+
+#menuCont a {
+    filter: drop-shadow(1px 2px black); 
+
+}
+
+a:link, a:visited {
+    color: #ffa500;
+    filter: drop-shadow(0.5px 1px rgb(0, 0, 0)); 
+    a:link {
+        text-decoration: none;
+      }
+}
+
+#serialCont {
+    width: 55%;
+}
+
+#serialCheckCapsule {
+    background-color: rgb(255, 172, 172);
+    padding: 6px 15%;
+    border-radius: 10px;
+    color:rgb(255, 0, 0);
+    filter: drop-shadow(0px 2px grey) !important; 
+    font-weight: 900;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+#serialCompatText {
+    filter: drop-shadow(1px 1px rgb(255, 0, 0)) !important;
+    font-weight: 900;
+    width:200%;
+    height:26px;
+    font-size: 19px;
+    margin-right:-50%;
+    margin-left:20%;
+}
+#serialCompatCheck {
+    filter: drop-shadow(1px 1px rgb(255, 0, 0)) !important;
+    width: 50%;
+    margin-left: -10%;
+}
+
+#serialCompatCheck:before {
+    content: '//';
+    position: relative;
+    left: -10px;
+    top: -1px;
+    bottom: 0;
+    vertical-align: middle;
+}
+
+#serialCompatCheck:after {
+    content: '//'; /* Escape Characters for 2x backslashes */
+    position: relative;
+    right: -10px;
+    top: -1px;
+    bottom: 0;
+    vertical-align: middle;
+}
+/*  */
+
+#portCheckCapsule {
+    background-color: rgb(255, 172, 172);
+    padding: 6px 15%;
+    border-radius: 10px;
+    color:rgb(255, 0, 0);
+    filter: drop-shadow(0px 2px grey) !important; 
+    font-weight: 900;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+#portCompatText {
+    filter: drop-shadow(1px 1px rgb(255, 0, 0)) !important;
+    font-weight: 900;
+    width:200%;
+    height:26px;
+    font-size: 19px;
+    margin-right:-50%;
+    margin-left:20%;
+}
+#portCompatCheck {
+    filter: drop-shadow(1px 1px rgb(255, 0, 0)) !important;
+    width: 50%;
+    margin-left: -10%;
+}
+
+#portCompatCheck:before {
+    content: '//';
+    position: relative;
+    left: -10px;
+    top: -1px;
+    bottom: 0;
+    vertical-align: middle;
+}
+
+#portCompatCheck:after {
+    content: '//'; /* Escape Characters for 2x backslashes */
+    position: relative;
+    right: -10px;
+    top: -1px;
+    bottom: 0;
+    vertical-align: middle;
+}
+
+/* */
+
+#validCheckCapsule {
+    background-color: rgb(255, 172, 172);
+    padding: 6px 15%;
+    border-radius: 10px;
+    color:rgb(255, 0, 0);
+    filter: drop-shadow(0px 2px grey) !important; 
+    font-weight: 900;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+#validCompatText {
+    filter: drop-shadow(1px 1px rgb(255, 0, 0)) !important;
+    font-weight: 900;
+    width:200%;
+    height:26px;
+    font-size: 19px;
+    margin-right:-50%;
+    margin-left:20%;
+}
+#validCompatCheck {
+    filter: drop-shadow(1px 1px rgb(255, 0, 0)) !important;
+    width: 50%;
+    margin-left: -10%;
+}
+
+#validCompatCheck:before {
+    content: '//';
+    position: relative;
+    left: -10px;
+    top: -1px;
+    bottom: 0;
+    vertical-align: middle;
+}
+
+#validCompatCheck:after {
+    content: '//'; /* Escape Characters for 2x backslashes */
+    position: relative;
+    right: -10px;
+    top: -1px;
+    bottom: 0;
+    vertical-align: middle;
+}
+
+#wrap {
+    display:none;
+}
+#isCompatibleWrap {
+    display:none;
+}
+
+@media screen and (max-width: 1000px) {
+    #serialCompatText {
+        margin-left: 10%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #menu button {
+        font-size: 100% !important;
+    }
+
+    #creditText a {
+        font-size: 100% !important;
+    }
+    #serialCompatText {
+        margin-left: 5%;
+    }
+
+    #serialCont {
+        width: 70%;
+    }
+
+}
+
+@media screen and (max-width: 606px) {
+    #serialCompatText {
+        font-size: 15px;
+        position: relative;
+        top: 15%;
+        left: 0px;
+    }
+
+    #portCompatText {
+        font-size: 15px;
+        position: relative;
+        top: 15%;
+        left: 0px;
+    }
+
+    #validCompatText {
+        font-size: 15px;
+        position: relative;
+        top: 15%;
+        left: 0px;
+    }
+
+    #serialCont {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #serialCompatText {
+        font-size: 11px;
+        top: 0%;
+    }
+    #wrap {
+        display: block;
+    }
+    #serialCompatCheck:before {
+        content: "";
+    }
+    #serialCompatCheck:after {
+        content: "";
+    }
+
+    #portCompatText {
+        font-size: 11px;
+        top: 0%;
+    }
+    #portCompatCheck:before {
+        content: "";
+    }
+    #portCompatCheck:after {
+        content: "";
+    }
+
+    #validCompatText {
+        font-size: 11px;
+        top: 0%;
+    }
+    #validCompatCheck:before {
+        content: "";
+    }
+    #validCompatCheck:after {
+        content: "";
+    }
+}
+
+@media screen and (max-width: 364px) {
+    #menuCont {
+        width: 100%;
+    }
+
+    #menu button {
+        font-size: 60% !important;
+    }
+
+    #loopbackButton {
+        width: 40px !important;
+    }
+
+    #creditText a {
+        font-size: 70% !important;
+    }
+
+    #isCompatibleWrap {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 257px) {
+    #menu button {
+        font-size: 50% !important;
+    }
+
+    #creditText a {
+        font-size: 50% !important;
+    }
+
+    #serialCompatText {
+        font-size: 8px;
+    }
+
+    #portCompatText {
+        font-size: 8px;
+    }
+
+    #validCompatText {
+        font-size: 8px;
+    }
+
+    #wrap {
+        display: block;
+    }
+}

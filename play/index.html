@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CW Warriors | Tarvit.me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="index.css"></link>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="../favicon.ico">
+</head>
+<body>
+
+<div id="test">
+    <script id="test2">
+
+    var alphabet = "abcdefghijklmnopqrstuvwxyz1234567890".split('');
+
+    class Title extends Phaser.Scene {
+
+        preload () {
+            this.load.image('ship',     './assets/ship.png');
+            this.load.image('space',    './assets/space.jpg');
+            this.load.image('cww_logo', './assets/cww_logo.png')
+        }
+
+        create () {
+            // space
+            const space = this.add.image(960, 1264, "space");
+            space.scaleX = 0.5;
+            space.scaleY = 0.5;
+            space.setOrigin(0.5, 1);
+
+            // Instructions
+            const instructions = this.add.text(726, 632, "", {});
+            instructions.preFX.padding = 10;
+            instructions.text = "// Instructions \\\\";
+            instructions.setStyle({ "fontFamily": "B612 Mono", "fontSize": "40px" });
+            instructions.setInteractive(new Phaser.Geom.Rectangle(-31, 0, 400, 80), Phaser.Geom.Rectangle.Contains);
+            instructions.preFX.addGlow(16777215, 0.5, 0.1, false);
+            instructions.preFX.addShadow(-0.5, -0.5, 0.1, 1, 6842472, 6, 1);
+
+            // Back
+            const back = this.add.text(830, 720, "", {});
+            back.preFX.padding = 10;
+            back.setInteractive(new Phaser.Geom.Rectangle(-99, -15, 400, 80), Phaser.Geom.Rectangle.Contains);
+            back.preFX.addGlow(16777215, 0.5, 0.1, false);
+            back.preFX.addShadow(-0.5, -0.5, 0.1, 1, 6842472, 6, 1);
+            back.tintTopLeft = 16777215;
+            back.tintTopRight = 16777215;
+            back.tintBottomLeft = 16777215;
+            back.tintBottomRight = 16777215;
+            back.text = "// Back \\\\";
+            back.setStyle({"fontFamily": "B612 Mono", "fontSize": "40px" });
+
+            back.on('pointerover', (event, gameObjects) => {
+                back.setTint(0xffa500);
+            });
+
+            back.on('pointerout', (event, gameObjects) => {
+                back.clearTint();
+                }
+            );
+
+            back.on('pointerup', (event, gameObjects) => {
+                window.open('https://axiomyt.github.io/cw-warriors/');
+                game.destroy();
+                }
+            );
+
+            instructions.on('pointerover', (event, gameObjects) => {
+                instructions.setTint(0xffa500);
+            });
+
+            instructions.on('pointerout', (event, gameObjects) => {
+                instructions.clearTint();
+                }
+            );
+            instructions.on('pointerdown', (event, gameObjects) => {
+                this.scene.stop()
+                this.scene.start('Instructions');
+                }
+            );
+
+            // image_1
+            this.add.image(960, 960, "ship");
+
+            // cww_logo
+            const cww_logo = this.add.image(960, 288, "cww_logo");
+            cww_logo.preFX.addGlow(16777215, 4, 0, false);
+
+            // Play
+            const play = this.add.text(830, 544, "", {});
+            play.preFX.addGlow(16777215, 0.5, 0.1, false);
+            play.preFX.addShadow(-0.5, -0.5, 0.1, 1, 6842472, 6, 1);
+            play.text = "// Play \\\\";
+            play.setStyle({ "fontFamily": "B612 Mono", "fontSize": "40px" }
+            );
+            play.setInteractive(new Phaser.Geom.Rectangle(-96, -15, 400, 80), Phaser.Geom.Rectangle.Contains);
+            play.on('pointerover', (event, gameObjects) => {
+                play.setTint(0xffa500);
+                }
+            );
+            play.on('pointerout', (event, gameObjects) => {
+                play.clearTint();
+                }
+            );
+
+            play.on('pointerdown', (event, gameObjects) => {
+                this.scene.stop()
+                this.scene.start('mainGame');
+                }
+            );
+
+            this.events.emit("scene-awake");
+        }
+
+        update () {
+
+        }
+
+    }
+
+    class Instructions extends Phaser.Scene {
+
+        constructor() {
+            super("Instructions");
+        }
+
+        editorCreate() {
+
+            // space
+            const space = this.add.image(960, 1264, "space");
+            space.scaleX = 0.5;
+            space.scaleY = 0.5;
+            space.setOrigin(0.5, 1);
+
+            // ouchText
+            const ouchText = this.add.text(392, 30, "", {});
+            ouchText.text = "Continuous Wave Warriors is a game and learning tool designed to develop experience in decoding and encoding Morse Code by ear.";
+            ouchText.setStyle({ "align": "justify", "fontFamily": "B612 Mono", "fontSize": "30px", "maxLines":2,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.blur":3,"shadow.stroke":true,"shadow.fill":true});
+            ouchText.setPadding({ "left": 100, "right": 100 });
+            ouchText.setWordWrapWidth(1000);
+
+            // text
+            const text = this.add.text(397, 165, "", {});
+            text.text = "This is your humble vessel: The Rocinante";
+            text.setStyle({ "align": "center", "fontFamily": "B612 Mono", "fontSize": "30px", "maxLines":100,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.blur":3,"shadow.stroke":true,"shadow.fill":true});
+            text.setPadding({ "left": 100, "right": 100 });
+            text.setWordWrapWidth(400);
+
+            // ship
+            this.add.image(1224, 225, "ship");
+
+            // text_2
+            const text_2 = this.add.text(363, 315, "", {});
+            text_2.text = "It has experimental communication equipment onboard which cannot be taken by the enemy fleet. In an effort to conceal itself, you decide to rely on old-world techniques to get home safely.";
+            text_2.setStyle({ "align": "justify", "fontFamily": "B612 Mono", "fontSize": "30px", "maxLines":100,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.blur":3,"shadow.stroke":true,"shadow.fill":true});
+            text_2.setPadding({ "left": 100, "right": 100 });
+            text_2.setWordWrapWidth(1000);
+
+            // text_3
+            const text_3 = this.add.text(373, 705, "", {});
+            text_3.text = "Press the . and - key on your keyboard to respond to the enemy ship's contact with the correct Morse character and modulate your cloaking device to match. Be careful though! If you take too long, they will figure you out and fire!";
+            text_3.setStyle({ "align": "justify", "fontFamily": "B612 Mono", "fontSize": "30px", "maxLines":100,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.blur":3,"shadow.stroke":true,"shadow.fill":true});
+            text_3.setPadding({ "left": 100, "right": 100 });
+            text_3.setWordWrapWidth(1000);
+
+            // text_4
+            const text_4 = this.add.text(402, 884, "", {});
+            text_4.text = "If you lose too many lives, you will be caught!";
+            text_4.setStyle({ "align": "justify", "fontFamily": "B612 Mono", "fontSize": "30px", "maxLines":4,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.blur":3,"shadow.stroke":true,"shadow.fill":true});
+            text_4.setPadding({ "left": 100, "right": 100 });
+            text_4.setWordWrapWidth(1000);
+
+            // Lives Demo
+            const lives = this.add.image(960, 1005, "lives");
+            lives.preFX.addGlow(16777215, 4, 0, false);
+
+            // text_5
+            const text_5 = this.add.text(363, 495, {});
+            text_5.text = "The enemy scanners are pinging the area with characters and morse chracters that look like this:";
+            text_5.setStyle({ "align": "justify", "fontFamily": "B612 Mono", "fontSize": "30px", "maxLines":4,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.blur":3,"shadow.stroke":true,"shadow.fill":true});
+            text_5.setPadding({ "left": 100, "right": 100 });
+            text_5.setWordWrapWidth(1000);
+
+            // Instructions page that shows the enemy sample.
+            const s_example = this.add.image(960, 633, "exampleS");
+            s_example.preFX.addGlow(16777215, 4, 0, false);
+
+            // Loopback Navigation Button
+            const loopback = this.add.image(91, 95, "loopback");
+            loopback.setInteractive(new Phaser.Geom.Rectangle(-11, -14, 156, 156), Phaser.Geom.Rectangle.Contains);
+            loopback.preFX.addGlow(16777215, 4, 0, false);
+            loopback.scaleX = 1.5;
+            loopback.scaleY = 1.5;
+
+            // Loopback icon changes to colour to dictate it's clickable
+            loopback.on('pointerover', (event, gameObjects) => {
+                loopback.setTexture('loopback-active');
+                }
+            );
+            loopback.on('pointerout', (event, gameObjects) => {
+                loopback.setTexture('loopback');
+                }
+            );
+            loopback.on('pointerdown', (event, gameObjects) => {
+                this.scene.stop()
+                this.scene.start('default');
+                }
+            );
+
+            this.events.emit("scene-awake");
+
+        }
+        preload () {
+            this.load.image('ship',            'assets/ship.png');
+            this.load.image('space',           './assets/space.jpg');
+            this.load.image('exampleS',        'assets/S example.png')
+            this.load.image('loopback',        'assets/loopback.png')
+            this.load.image('loopback-active', 'assets/loopback-active.png')
+            this.load.image('lives',           'assets/lives.png')
+        }
+        create () {
+            this.editorCreate();
+        }
+        update () {
+
+        }
+    }
+
+    class mainGame extends Phaser.Scene {
+
+        constructor() {
+            super("mainGame");
+
+            // Global variables we need in other places.
+            this.enemyGroup = null;
+            this.ship = null;
+            this.shieldIntegrity = 5;
+            this.inputText = '';
+            this.initEnemyArray = [];
+            this.enemies = [];
+            this.validatedInput = "";
+            this.finalScore = 0;
+            this.ValidCode = {};
+            this.ValidChars = {};
+
+            // These are all of the localStorage options from the Options page.
+            this.charSpeed = 10;
+            this.chirp = false;
+            this.codeSpeed = 10;
+            this.noiseLevel = "OFF";
+            this.preset = 1;
+            this.QSB = false;
+            this.serialBool = false;
+            this.signalLevel = "S9";
+            this.straightKeyBool = true;
+            this.straightKeyer = '';
+        }
+
+        editorCreate() {
+
+            // Space Background
+            const space = this.add.image(960, 1264, "space");
+            space.scaleX = 0.5;
+            space.scaleY = 0.5;
+            space.setOrigin(0.5, 1);
+
+            // Ship Object
+            this.ship = this.add.sprite(331, 563, "ship");
+
+            // Hull integrity UI Image
+            const lives_1 = this.add.image(277, 78, "lives");
+            lives_1.preFX.addGlow(16777215, 4, 0, false);
+
+            // shield
+            window.shield = this.add.image(764, 535, "shield");
+		    shield.setInteractive(new Phaser.Geom.Rectangle(0, 0, 965, 1000), Phaser.Geom.Rectangle.Contains);
+            shield.scaleX = 0.2;
+            shield.scaleY = 0.7;
+
+            // inputBox
+            const inputBox = this.add.image(361, 968, "inputBox");
+            inputBox.scaleX = 2;
+
+            // We're pretty much ready to rock, let's send it.
+            this.events.emit("scene-awake");
+        }
+
+        createInputBox() {
+
+            // This was put here for testing, so I could mess with the html input.
+            // It remains as tech debt.
+            this.textbox = document.createElement('input');
+            this.textbox.type = 'text';
+            this.textbox.style.position = 'absolute';
+            this.textbox.style.bottom = '20vh';
+            this.textbox.style.left = '5vw';
+            this.textbox.style.width = '10vh';
+            this.textbox.style.fontSize = '3vh';
+            this.textbox.style.padding = '1vh';
+            this.textbox.style.border = '0.5vh solid #ccc';
+            this.textbox.style.textAlign = 'center';
+            this.textbox.style.visibility = 'hidden';
+
+            // userDisplayInput > The letter above the input
+		    this.userDisplayInput = this.add.text(299, 774, "", {});
+		    this.userDisplayInput.scaleY = 0.7;
+		    this.userDisplayInput.text = "";
+		    this.userDisplayInput.setStyle({ "align": "center", "backgroundColor": "", "fontFamily": "b612 mono", 
+                                             "fontSize": "200px", "shadow.offsetX":0.5,"shadow.offsetY":0.5,
+                                             "shadow.color": "#fffff", "shadow.stroke":true,"shadow.fill":true
+                                      }
+            );
+
+            // codeBoxInput > The actual Input
+		    this.codeBoxInput = this.add.text(30, 905, "", {});
+		    this.codeBoxInput.scaleY = 0.7;
+		    this.codeBoxInput.text = "";
+		    this.codeBoxInput.setStyle({ "align": "center", "backgroundColor": "", "fontFamily": "b612 mono", 
+                                         "fontSize": "200px", "fontStyle": "bold", "shadow.offsetX":1,
+                                         "shadow.offsetY":1,"shadow.color": "#fffff", "shadow.stroke":true,
+                                         "shadow.fill":true, "top":-10,"bottom":-10,"letterSpacing": "-0.05em"
+                                        }
+            );
+
+            // This is also a remnant of the past, alas - This house of cards shall fall should this be taken out.
+            const gameContainer = document.getElementById('test');
+            gameContainer.appendChild(this.textbox);
+            this.textbox.focus();
+
+            // When the user gives an input
+            this.input.keyboard.on('keyup', (event) => {
+                const key = event.key;
+
+                // The key length that we care about should only ever be 1, any more and it's a Space / Backspace.
+                if (key.length === 1) {
+                    this.inputText += key;
+
+                    if (this.inputText.includes('.') || this.inputText.includes('-') === true ) {
+                        this.codeBoxInput.text += key;
+                        if (key === '.') {
+                            this.dotSound.play();
+                        }
+                        if (key === '-') {
+                            this.dashSound.play();
+                        }
+                    }
+                    // This check makes sure that no morse character ends up
+                    // in the top box that should only display ascii letters.
+                    if ( this.inputText.length > 1) {
+                        this.userDisplayInput.text = '';
+                    }
+                    
+                    // Morse letters can only ever be 6 characters
+                    if ( this.inputText.length > 6 ) {
+                        this.textbox.value = null;
+                        this.inputText = '';
+                        this.codeBoxInput.text = "";
+                    }
+
+                } 
+                else if (key === 'Backspace') {
+                    // Take the last letter off the input boxes when the player strikes a backspace.
+                    this.inputText = this.inputText.slice(0, -1);
+                    this.codeBoxInput.text = this.codeBoxInput.text.slice(0, -1);
+                    this.textbox.value = null;
+                    this.userDisplayInput.text = '';
+                }
+
+                //else if (key === this.straightKeyer) {
+                //    this.codeBoxInput += '.';
+                //}
+
+                // collect the string as it comes, send it off to our checker F(n),
+                // if it matches, then display the character it represents.
+                // Doesn't matter if it's the correct one. Feels good.
+                this.textbox.value = this.inputText;
+                this.validatedInput = this.charToCode(this.textbox.value);
+                if (this.validatedInput) {
+                    this.userDisplayInput.text = this.validatedInput.toUpperCase();
+                }
+            });
+        }
+
+        letterToEnemyKey(character) {
+            // Really wanted to preserve the ability to just call createMorse() with
+            // a character only, this mapping makes it so easy to formulate scripts of
+            // enemy spawns.
+            const Mapping = {
+                'a': 'a_enemy', 'b':  'b_enemy',  'c': 'c_enemy', 'd':  'd_enemy',
+                'e': 'e_enemy', 'f':  'f_enemy',  'g': 'g_enemy', 'h':  'h_enemy',
+                'i': 'i_enemy', 'j':  'j_enemy',  'k': 'k_enemy', 'l':  'l_enemy',
+                'm': 'm_enemy', 'n':  'n_enemy',  'o': 'o_enemy', 'p':  'p_enemy',
+                'q': 'q_enemy', 'r':  'r_enemy',  's': 's_enemy', 't':  't_enemy',
+                'u': 'u_enemy', 'v':  'v_enemy',  'w': 'w_enemy', 'x':  'x_enemy',
+                'y': 'y_enemy', 'z':  'z_enemy',  
+                '0':  '0_enemy',  '1': '1_enemy', '2': '2_enemy', '3': '3_enemy', 
+                '4':  '4_enemy',  '5': '5_enemy', '6': '6_enemy', '7': '7_enemy', 
+                '8':  '8_enemy',  '9': '9_enemy',
+            };
+            // If for any reason we can't retrieve this letter from the map,
+            // then silently drop it and return an 'S' enemy
+            return Mapping[character.toLowerCase()] || 's_enemy';
+        }
+
+        createMorseArray() {
+            this.ValidChars = {
+                'a': '.-',    'b': '-...',    'c': '-.-.',   'd': '-..',     'e': '.',
+                'f': '..-.',  'g': '--.',     'h': '....',   'i': '..',      'j': '.---',
+                'k': '-.-',   'l': '.-..',    'm': '--',     'n': '-.',      'o': '---',
+                'p': '.--.',  'q': '--.-',    'r': '.-.',    's': '...',     't': '-',
+                'u': '..-',   'v': '...-',    'w': '.--',    'x': '-..-',    'y': '-.--',
+                'z': '--..',  
+                '0': '-----',  '1': '.----',   '2': '..---', '3': '...--', '4': '....-',   
+                '5': '.....',  '6': '-....',   '7': '--...', '8': '---..', '9': '----.',
+            };
+        }
+
+        charToCode(userString) {
+
+            // Had to reverse this array to evaluate the conversion in the reverse order as
+            // well as forward. Eg.) "S = ..." but also "... = S"
+            //                        ^ ValidChars        ^ ValidCode
+            for (const char in this.ValidChars) {
+                const code = this.ValidChars[char];
+                this.ValidCode[code] = char;
+            }
+
+            for (var letter of userString) {
+                // If it's a morse symbol
+                if (userString.includes('.') || userString.includes('-') === true ) {
+                    return this.ValidCode[userString.toLowerCase()] || null;
+                }
+                // Or the user has entered an ascii letter
+                else {
+                    //return ValidChars[userString.toLowerCase()] || userString;
+                    return userString;
+                }
+            }
+        }
+
+        createMorse = (character) => {
+            // 5 positions on the right of the screen that a character can appear
+            // on screen, it's a pseudorandom process to pick which one it spawns in.
+            const spawnPoints = [130, 335, 540, 745, 950];
+            const randomIndex = Phaser.Math.Between(0, 4);
+            const selectedSpawnY = spawnPoints[randomIndex];
+
+            const mappedEnemy = this.letterToEnemyKey(character);
+
+            // This block handles playing the sound of the enemy character when
+            // It appears on screen, we call charToCode() with our input, which returns
+            // The string morse representation. e.g) this.charToCode('C') = '-.-.'
+            const morseString = this.ValidChars[character.toLowerCase()];
+            let delay = 0;
+            // Now that we have an actual string, we can just iterate over it and play
+            // the sound depending on what it is.
+            for (const morseBit of morseString) { 
+                // Schedule the play call with a delay
+                this.time.delayedCall(delay, () => {
+                    if (morseBit === '.') {
+                        this.dotSound.play();
+                    } 
+                    else if (morseBit === '-') {
+                        this.dashSound.play();
+                    }
+                });
+
+                // This delay factor took a lot of tuning, and I'm still not sure it's right.
+                delay += 500;
+            }
+
+            const generatedEnemy = this.add.sprite(1670, selectedSpawnY, mappedEnemy);
+            generatedEnemy.scale = 0.5;
+            generatedEnemy.name = character;
+            generatedEnemy.preFX.addBlur(2, 2, 2, 5, 0xffffff, 4);
+            
+            // I needed to create a group that contains elements of enemy objects, because
+            // I had problems when destroying one s_enemy, Phaser would freeze and cull
+            // all of them.
+            this.enemyGroup.add(generatedEnemy);
+        }
+
+        // This function is what is called every frame to determine if the ship 
+        // should move to face the enemy or not
+        findClosestEnemy() {
+            const enemies = this.enemyGroup.getChildren();
+            let closestEnemy = null;
+            let minDistance = Infinity;
+
+            for (let i = 0; i < enemies.length; i++) {
+                const enemy = enemies[i];
+                const distance = Math.abs(enemy.y - window.shield.y);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestEnemy = enemy;
+                }
+            }
+            return closestEnemy;
+        }
+
+        getLocalStorage() {
+            this.preset = localStorage.getItem("preset");
+
+            // As a reminder, 1>Cadet 2>Lieutenant 3>Commodore 4>CUSTOM.
+            // If the player has a custom configuration options, we respect them here,
+            // but if we can't find cookies for everything else, we default to an easy value.
+            if (this.preset) {
+
+                // This if block is ugly as sin, but it's functional.
+                if (this.preset === 4) {
+                    if (this.charSpeed === null) {
+                        this.charSpeed = localStorage.getItem("charSpeed");
+                    }
+                    else {
+                        this.charSpeed = 10;
+                    }
+
+                    if (this.chirp === null) {
+                        this.chirp = localStorage.getItem("chirp");
+                    }
+                    else {
+                        this.chirp = false;
+                    }
+                    if (this.codeSpeed === null) {
+                        this.codeSpeed = localStorage.getItem("codeSpeed");
+                    }
+                    else {
+                        this.codeSpeed = 5;
+                    }
+                    if (this.noiseLevel) {
+                        this.noiseLevel = localStorage.getItem("noiseLevel");
+                    }
+                    else {
+                        this.noiseLevel = "OFF";
+                    }
+                    if (this.QSB === null) {
+                        this.QSB = localStorage.getItem("QSB");
+                    }
+                    else {
+                        this.QSB = false;
+                    }
+
+                    if (this.serialBool === null) {
+                        this.serialBool = localStorage.getItem("serialBool");
+                    }
+                    else {
+                        this.serialBool = false;
+                    }
+                    if (this.signalLevel === null) {
+                        this.signalLevel = localStorage.getItem("signalLevel");
+                    }
+                    else {
+                        this.signalLevel = "S9";
+                    }
+
+                    if (this.straightKeyBool === null) {
+                        this.straightKeyBool = localStorage.getItem("straightKeyBool");
+                    }
+                    else {
+                        this.straightKeyBool = false;
+                    }
+                    if (this.straightKeyer === null) {
+                        this.straightKeyer = localStorage.getItem("straightKeyer");
+                    }
+                    else {
+                        this.straightKeyer = "space";
+                    }
+                }
+                else if (this.preset === 1) {
+                    this.charSpeed       = 10;
+                    this.chirp           = false;
+                    this.codeSpeed       = 5;
+                    this.noiseLevel      = "OFF";
+                    this.QSB             = false;
+                    this.serialBool      = false;
+                    this.signalLevel     = "S9";
+                    this.straightKeyBool = false;
+                    this.straightKeyer   = 'space';
+                }
+                else if (this.preset === 2) {
+                    this.charSpeed       = 20;
+                    this.chirp           = false;
+                    this.codeSpeed       = 7;
+                    this.noiseLevel      = "S3";
+                    this.QSB             = true;
+                    this.serialBool      = false;
+                    this.signalLevel     = "S7";
+                    this.straightKeyBool = false;
+                    this.straightKeyer   = 'space';
+                }
+                else if (this.preset === 3) {
+                    this.charSpeed       = 25;
+                    this.chirp           = true;
+                    this.codeSpeed       = 10;
+                    this.noiseLevel      = "S5";
+                    this.QSB             = true;
+                    this.serialBool      = false;
+                    this.signalLevel     = "S5";
+                    this.straightKeyBool = false;
+                    this.straightKeyer   = 'space';
+                }
+            }
+            else {
+                this.charSpeed       = 10;
+                this.chirp           = false;
+                this.codeSpeed       = 5;
+                this.noiseLevel      = "OFF";
+                this.QSB             = false;
+                this.serialBool      = false;
+                this.signalLevel     = "S9";
+                this.straightKeyBool = false;
+                this.straightKeyer   = 'space';
+            }
+
+        }
+
+        buildUI() {
+            // This overlay is a 50% opacity black screen, this is drawn as visible when the player loses.
+            this.overlay = this.add.rectangle(0, 0, this.cameras.main.width, this.cameras.main.height, 0x000000, 0.5);
+            this.overlay.setOrigin(0, 0);
+            this.overlay.setVisible(false);
+
+            // ouch
+            this.ouchText = this.add.text(407, 216, "", {});
+            this.ouchText.scaleX = 2;
+            this.ouchText.scaleY = 2;
+            this.ouchText.text = "Ouch,\nthat's gotta hurt!\n";
+            this.ouchText.setStyle({ "align": "center", "fontFamily": "b612 mono", "fontSize": "50px", "fontStyle": "bold" });
+            this.ouchText.setVisible(false);
+
+            // score text
+            this.scoreText = this.add.text(407, 634, "", {});
+            this.scoreText.scaleX = 2;
+            this.scoreText.scaleY = 2;
+            this.scoreText.text = "Your Score:";
+            this.scoreText.setStyle({ "align": "center", "fontFamily": "b612 mono", "fontSize": "50px", "fontStyle": "bold" });
+            this.scoreText.setVisible(false);
+
+            // score 
+            this.scoreNumber = this.add.text(1155, 653, "", {});
+            this.scoreNumber.text = "000000";
+            this.scoreNumber.setStyle({ "color": "#ffa500", "fontSize": "90px" });
+            this.scoreNumber.setVisible(false);
+
+            // retry
+            this.retry = this.add.text(765, 884, "", {});
+            this.retry.scaleX = 2;
+            this.retry.scaleY = 2;
+            this.retry.text = "Retry?\n";
+            this.retry.setInteractive();
+            this.retry.setStyle({ "align": "center", "color": "#ffa500", "fontFamily": "b612 mono", "fontSize": "50px", "fontStyle": "bold" });
+            this.retry.setVisible(false);
+
+            this.shieldIntegrityText = this.add.text(550, 30, '', { fontFamily: 'b612 mono', fontSize: 90, color: '#ffa500' });
+            this.shieldIntegrityText.setText(this.shieldIntegrity);
+
+        }
+
+        // Call order is Preload > Create > Update. 
+        // This function grabs all of our assets.
+        preload() {
+            this.load.image('space',    './assets/space.jpg');
+            this.load.image('lives',    'assets/lives.png');
+            this.load.image('shield',   'assets/shield.png');
+            this.load.image('inputBox', 'assets/inputBox.png');
+            
+            this.load.audio('dot',      'assets/dot.wav');
+            this.load.audio('dash',     'assets/dash.wav');
+            this.load.audio('laser',    'assets/evangelion-laser.mp3');
+            this.load.audio('phaser',   'assets/tng_phaser_clean.mp3');
+            this.load.audio('noise',    'assets/cmbr.mp3');
+
+            //this.load.image('a_enemy', 'assets/Characters/A.png');
+            //this.load.image('s_enemy', 'assets/Characters/S.png');
+            // ...
+            // Yeah I'm not typing all of that out, so here I'm creating an entry programatically
+            // based on the contents of the alphabet[] array.
+            for (var tempcounter = 0; tempcounter < alphabet.length; tempcounter++) { 
+                var tempAlpha = alphabet[tempcounter].toLocaleUpperCase();
+                this.load.image(tempAlpha.toLocaleLowerCase()+"_enemy", 'assets/Characters/'+tempAlpha+".png");
+            }
+        }
+
+        // Create is run once on initialisation.
+        create() {
+            this.editorCreate();
+            this.createInputBox();
+            this.getLocalStorage();
+            this.buildUI();
+            this.createMorseArray()
+
+            this.dotSound        = this.sound.add('dot');
+            this.dashSound       = this.sound.add('dash');
+            this.laserSound      = this.sound.add('laser',  {volume: 0.2});
+            this.phaserSound     = this.sound.add('phaser', {volume: 0.2});
+            this.backgroundNoise = this.sound.add('noise',  {volume: 0.3});
+
+            if (this.signalLevel) {
+                // We're extracting the 'S' from the value, then concatenating it to make a float. E.g) S7 > 0.7
+                var signalLevel = '0.' + localStorage.getItem('signalLevel').slice(1);
+                this.dotSound.volume = signalLevel;
+                this.dashSound.volume = signalLevel;
+            }
+
+            if (this.noiseLevel) {
+                if (!this.backgroundNoise === 'OFF') {
+                    var noiseLevel = '0.' + localStorage.getItem('signalLevel').slice(1);
+                    this.backgroundNoise.volume = noiseLevel;
+                    this.backgroundNoise.play();
+                }
+            }
+
+            // The code relies on always having an enemy in the array, so when initialising -
+            // we need to create a fake enemy to begin with, this technially counts as an automatic 
+            // life loss so we need to add 1 to the lives to compensate later.
+            this.enemyGroup = this.add.group();
+            const placeholder = this.add.sprite(-100, -100, 's_enemy');
+            this.enemyGroup.add(placeholder);
+
+            // Right now we just create a big map of enemies and their order of appearance,
+            // codeSpeed and charSpeed set the speed and spacing of these letters.
+            const script = "kmkmkmkukukmurmkurmrkeuemekmurusermksuresnaptlwijzfoyvg5q92h38b47c1d60x";
+
+            for (let enemy = 0; enemy < script.length; enemy++){
+                window["evilCreature" + enemy] = script.charAt(enemy);
+                this.initEnemyArray[enemy] = "evilCreature" + enemy;
+            }
+
+            for (let i = 0; i < this.initEnemyArray.length; i++) {
+                const character = window[this.initEnemyArray[i]];
+                let delay = i * 7200;
+                if (this.codeSpeed) {
+                    // Converting WPM to an actual ms delay based on an avg morse word speed on avg of 50 char/word
+                    delay = i * (60 / (this.codeSpeed * 50)) * 30000;
+                }
+
+                // Really neat Phaser function that delays based on ms, lot of trial and error with the delay length.
+                // Still not sure totally how to work it but it's acceptable.
+                this.time.delayedCall(delay, () => {
+                    this.createMorse(character);
+                }, [], this);
+            }
+
+        }
+
+        // Update runs every frame draw
+        update() {
+            // Keeps track of whether enemies are still locked and loaded in the sequence.
+            this.enemies = this.enemyGroup.getChildren();
+            const enemiesObject = this.enemyGroup.getChildren();
+
+            // For everything we find in this frame,
+            for (let i = 0; i < this.enemies.length; i++) {
+                const enemy = this.enemies[i];
+                // Move it forward toward the shield.
+                enemy.x -= this.charSpeed / 35;
+                const killBox = window.shield.x + 200;
+
+                // Phaser built-in hitbox attached to the shield object, super neat
+                if (Phaser.Geom.Intersects.RectangleToRectangle(enemy.getBounds(), window.shield.getBounds())) {
+                    enemy.destroy();
+                    this.finalScore -= 100;
+                    this.shieldIntegrity --;
+                    this.shieldIntegrityText.setText(this.shieldIntegrity);
+                    this.phaserSound.play();
+                    //console.log("hit from geom - " + this.shieldIntegrity)
+                }
+
+                // Had some strange issues with the hitbox not triggering every time,
+                // so as a backup, if an enemy reaches the shield + 300px - it acts as a hit
+                if (enemy.x <= killBox) {
+                    enemy.destroy();
+                    this.finalScore -= 100;
+                    this.shieldIntegrity --;
+                    this.shieldIntegrityText.setText(this.shieldIntegrity);
+                    this.phaserSound.play();
+                    //console.log("hit from killbox - " + this.shieldIntegrity)
+                }
+                // validatedInput will only not be null when the user input matches the required input.
+                // So treat this as a statement that only runs when the user has it correct.
+                if (this.validatedInput) {
+                    if (enemy.name === this.validatedInput.toLocaleLowerCase()) {
+                        this.finalScore += 100;
+                        enemy.destroy();
+                        this.textbox.value = null;
+                        this.inputText = '';
+                        this.codeBoxInput.text = "";
+                        this.laserSound.play();
+                    }
+                }
+
+
+            }
+
+            // When the players health reaches 0, the scene is paused and the end screen is shown.
+            if (this.shieldIntegrity < 1) {
+                this.overlay.setVisible(true);
+                this.ouchText.setVisible(true);
+                this.scoreText.setVisible(true);
+                this.scoreNumber.text = this.finalScore;
+                this.scoreNumber.setVisible(true);
+                this.retry.setVisible(true);
+                this.scene.pause();
+            }
+            
+            // This section handles automatically moving the ship infront of the enemies
+            // First we need to call our find F(n), if it returns null, then we move to the centre.
+            const closestEnemy = this.findClosestEnemy();
+            const shipSpeed = 1;
+            if (closestEnemy && this.ship) {
+                const targetY = closestEnemy.y;
+
+                // If our ship is 'lower' on screen than the enemy, the ship rises to meet it.
+                // Vise Versa.
+                if (this.ship.y < targetY) {
+                    this.ship.y += shipSpeed;
+                } else if (this.ship.y > targetY) {
+                    this.ship.y -= shipSpeed;
+                }
+
+                // The ship would glide under UI elements ~ 200 < X > 850,
+                // So we restrict it to the visible screen. Wow that clamp F(n) is handy.
+                this.ship.y = Phaser.Math.Clamp(this.ship.y, 215, 700)
+            }
+            else {
+                // x0 y563 is roughly in the middle of the screen, 1080/2 looked wrong
+                if (this.ship.y < 563) {
+                    this.ship.y += shipSpeed;
+                } else if (this.ship.y > 563) {
+                    this.ship.y -= shipSpeed;
+                }
+            }
+
+        }
+    }
+
+    const config = {
+        type: Phaser.AUTO,
+        width:1920,
+        height:1080,
+        scale: {
+
+            zoom: 1,
+            min: {
+                width: 300,
+                height: 169
+            },
+            max: {
+                width: 3840,
+                height: 2160
+            },
+            mode: Phaser.Scale.FIT,
+            autoCenter: Phaser.Scale.CENTER_BOTH,
+        },
+        autoround: false,
+        scene: [Title, Instructions, mainGame],
+        physics: {
+            default: 'arcade',
+            arcade: {
+                debug: true,
+                gravity: { y: 200 }
+            }
+        },
+    };
+
+    const game = new Phaser.Game(config);
+    </script>
+</div>
+
+</body>
+
+</html>

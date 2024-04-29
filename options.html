@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CW Warriors | Tarvit.me</title>
+        <link href="./options.css" rel="stylesheet">
+        <script src="./options.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="favicon.ico">
+    </head>
+
+    <body>
+
+        <div id="menuCont">
+
+            <section id="menu">
+                <button src="#'" href="#" style="cursor:initial; font-family: B612;">
+                    CONFIGURATION
+                </button>
+            </section>
+
+            <div id="loopbackButton" style="color: white;  filter: drop-shadow(6px 6px 6px white);">
+                <a href="https://axiomyt.github.io/cw-warriors/">
+                <img style="width: 100%;" src="./loopback.png"></img>
+                </a>
+            </div>
+
+        </div>
+
+        <section id="configBox">
+            <div id="top">
+                <a id="presetText">Difficulty Preset </a><a id="divider">||</a>
+                <hr id="dividerHorizontal">
+                <a id="difficultyRow">
+                    <button class="difficultyButton" id="difficultyButton1" onclick="difficultySet(1)">Cadet</button>
+                    <button class="difficultyButton" id="difficultyButton2" onclick="difficultySet(2)">Lieutenant</button>
+                    <button class="difficultyButton" id="difficultyButton3" onclick="difficultySet(3)">Commodore</button>
+                    <button class="difficultyButton" id="difficultyButton4" onclick="difficultySet(4)">CUSTOM</button>
+                </a>
+                <!-- <hr style="width:90%;"> -->
+            </div>
+            <div id="left">
+                <hr style="width:90%;">
+                <span id="charSpeed"><a>Character Speed </a> 
+                    <a id="speedBox">
+                        <span class="modifier" onclick="modifySpeedBox('charInput', -1);">-</span>
+                        <input type="number" class="Input" id="charInput" value="10"></input>
+                        <span class="modifier" onclick="modifySpeedBox('charInput', 1)">+</span>
+                    </a>
+                </span><br>
+                <span id="codeSpeed"><a>Code Speed </a> 
+                    <a id="speedBox">
+                        <span class="modifier" onclick="modifySpeedBox('codeSpeed', -1)">-</span>
+                        <input type="number" class="Input" id="codeInput" value="5"></input>
+                        <span class="modifier" onclick="modifySpeedBox('codeSpeed', 1)">+</span>
+                    </a>
+                </span>
+                <br><hr style="width:70%; margin-right: -5px;">
+                <a id="noiseLevel">Noise Level</a><a> - 
+                    <select id="selectNoise" onclick="difficultySet(4)">
+                        <option value="S9">S9</option>
+                        <option value="S7">S7</option>
+                        <option value="S5">S5</option>
+                        <option value="S3">S3</option>
+                        <option value="OFF" selected="selected">Off</option>
+                  </select>
+                </a><br>
+                <a id="signalLevel">Signal Strength</a><a> - 
+                    <select id="selectSignal" onclick="difficultySet(4)">
+                        <option value="S1">S1</option>
+                        <option value="S3">S3</option>
+                        <option value="S5">S5</option>
+                        <option value="S7">S7</option>
+                        <option value="S9" selected="selected">S9</option>
+                    </select>
+                </a><br>
+                <a id="QSBBool">QSB</a> - <input  id="QSBSel" type="checkbox" onclick="difficultySet(4)"></input></a><br>
+                <a id="ChirpBool">Chirp</a><a> - <input id="chirpSel" type="checkbox" value="false" onclick="difficultySet(4)"></input></a><br>
+                <a id="keyerBool">Straight Key</a><a> - <input id="keyerSel" type="checkbox" value="false" onclick="difficultySet(4)"></input></a><br>
+            </div>
+            <div id="right">
+                <hr style="width:90%;">
+                <a><h1>Description</h1></a>
+                <a id="descLine1">Hover over an option to</a><br>
+                <a id="descLine2">see how it changes your game!</a><br>
+                <a id="descLine3"></a><br>
+                <a id="descLine4"></a><br>
+                <a id="descLine5"></a><br>
+            </div>
+        </section>
+        <section id="keyerSetupMenu">
+            <hr style="width: 90%;">    
+            <div id="keyerLeft">
+                Custom Keyer Button 
+                <br id="keyerBR" style="display: none;">    <!--Trying to keep this bracket readable-->
+                (Straight Key Only) <br>
+                <input type="text" maxlength=1 pattern="[A-Za-z]{1}" id="keyerInput"
+                       title="Custom Keyer for straight keys, if you don't know
+                              what this means it's best to leave it alone"/>
+                </input>
+            </div>
+            <div id="keyerRight">
+                <button id="webserialNav" src="./webserial.html" href="./webserial.html">
+                    <a href="https://axiomyt.github.io/cw-warriors/webserial.html"> 
+                        Configure Webserial
+                    </a>
+                </button>
+            </div>
+        </section>
+
+    </body>
+
+</html>
