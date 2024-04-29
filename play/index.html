@@ -474,7 +474,7 @@
             generatedEnemy.scale = 0.5;
             generatedEnemy.name = character;
             generatedEnemy.preFX.addBlur(2, 2, 2, 5, 0xffffff, 4);
-            
+
             // I needed to create a group that contains elements of enemy objects, because
             // I had problems when destroying one s_enemy, Phaser would freeze and cull
             // all of them.
@@ -749,7 +749,6 @@
         update() {
             // Keeps track of whether enemies are still locked and loaded in the sequence.
             this.enemies = this.enemyGroup.getChildren();
-            const enemiesObject = this.enemyGroup.getChildren();
 
             // For everything we find in this frame,
             for (let i = 0; i < this.enemies.length; i++) {
@@ -790,7 +789,6 @@
                         this.laserSound.play();
                     }
                 }
-
 
             }
 
